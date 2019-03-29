@@ -1,33 +1,116 @@
-.App {
-  text-align: center;
+/*
+font-family: futura-pt,sans-serif;
+font-weight: 400;
+font-style: normal;
+
+font-family: futura-pt,sans-serif;
+font-weight: 300;
+font-style: normal;
+
+font-family: futura-pt-condensed,sans-serif;
+font-weight: 400;
+font-style: normal;
+
+font-family: futura-pt-condensed,sans-serif;
+font-weight: 800;
+font-style: normal;
+*/
+
+
+*{
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+  font-family: futura-pt,sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+rect {
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+/* .App div {
+  border: 1px solid #333;
+} */
+
+
+.App{
+  position: relative;
+  top: 1vh;
+  margin: 2vh auto;
+  width: 1400px;
+  height: 700px;
 }
 
-.App-link {
-  color: #61dafb;
+#main-chart-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 25%;
+  /* border: 1px solid #333; */
 }
+
+#title-img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+#secondary-chart-container {
+  position: absolute;
+  top: 28%;
+  left: 0;
+  width: 40%;
+  height: 45%;
+  /* border: 1px solid #333; */
+}
+
+#credit-container {
+  position: absolute;
+  top: 75%;
+  left: 0;
+  width: 5%;
+  height: 5%;
+  /* border: 1px solid #333; */
+}
+
+#information-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 42%;
+  height: 32%;
+  /* border: 1px solid #333; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* END */
