@@ -9,7 +9,7 @@ const height = 320 ,
 const panes = [
   { menuItem: 'Number of paintings', render: () => <Tab.Pane>
     <SecondaryChart
-      height = {height}
+      height = {height }
       width = {width}
 
     />

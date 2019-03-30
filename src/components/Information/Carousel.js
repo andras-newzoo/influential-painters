@@ -15,7 +15,7 @@ class Carousel extends Component {
 
     const { painter } = this.props,
           { empty } =this.state
-    console.log(prevProps.painter)
+    // console.log(prevProps.painter)
 
     if(prevProps.painter === undefined){
       this.setState(() => ({empty: true}))
@@ -71,7 +71,7 @@ class Carousel extends Component {
                dots: true,
                infinite: true,
                speed: 500,
-               autoplay: true
+               autoplay: false
              };
 
     return (
