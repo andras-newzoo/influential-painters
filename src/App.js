@@ -81,7 +81,9 @@ class App extends Component {
           metric: 'none',
           metricKey: 'none',
           colorPicker: colorPicker,
-          secondaryChartMetric: painterMetrics}))
+          secondaryChartMetric: painterMetrics,
+          bio: d[0].bio,
+          name: d[0].name}))
   }
 
   handleNationalityDropdown = (event, {value}) => {
@@ -148,9 +150,9 @@ class App extends Component {
           <img id='title-img' src={title} alt="Title - Who Gave Colour to Our History"></img>
         </div>
         <div id="text-container">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ergo omni animali illud, quod appetiti positum est in eo, quod naturae est accommodatum.</p>
+          <p>Discover the life of some of the greatest painters of the Western culture from the 13th up until  the 20th century!</p>
           <Dropdown onChange={this.handleMainDropDown}
-            placeholder='Search...'
+            placeholder='Search for a painter...'
             fluid
             selection
             search
