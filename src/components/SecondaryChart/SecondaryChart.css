@@ -1,0 +1,14 @@
+
+.y-axis {
+  stroke-opacity: .2
+}
+
+.y-axis text {
+  fill: #fff;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.paintings-y-axis text {
+  font-size: .8rem;
+}

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3-axis": "^1.0.12",
+    "d3-collection": "^1.0.7",
+    "d3-scale": "^3.0.0",
     "react": "^16.8.6",
     "react-bootstrap-carousel": "^3.4.1",
     "react-dom": "^16.8.6",

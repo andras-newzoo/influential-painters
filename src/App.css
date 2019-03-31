@@ -132,6 +132,14 @@ rect {
    outline: none;
  }
 
+.ui.tabular.menu .active.item {
+  font-weight: 400 !important;
+}
+
+.slick-dots li button:before{
+  content:'●';
+  font-size: 1rem;
+}
 
 
 

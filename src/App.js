@@ -14,13 +14,19 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      painter : undefined ,
+      painter : 'none' ,
       colorPicker: 1,
+      secondary: ''
     }
   }
 
+  colorPickerFunction(){
+    let color = Math.floor(Math.random() * colors.length)
+    return color
+  }
+
   handleMainChartClick = (d) => {
-      let colorPicker = Math.floor(Math.random() * colors.length)
+      let colorPicker = this.colorPickerFunction()
       this.setState(() => ({
             painter: d.id,
             colorPicker: colorPicker}))
@@ -28,9 +34,20 @@ class App extends Component {
 
   }
 
+  handleSecondaryChartClick = (d) => {
+      let colorPicker = this.colorPickerFunction()
+      this.setState(() => ({
+            secondary: d.key,
+            colorPicker: colorPicker,
+            painter: 'none'}))
+
+
+  }
+
   formatData(raw){
     raw.forEach(d => {
       d.id = d.name.toLowerCase().replace(/[ -]/g,"")
+      d.years = d.end - d.start
     })
     return raw
   }
@@ -64,16 +81,16 @@ class App extends Component {
         <div id="text-container">
         </div>
         <div id="secondary-chart-container">
-          <SecondaryChartContainer
-
-          />
+            <SecondaryChartContainer
+              handleClick = {this.handleSecondaryChartClick}
+            />
         </div>
         <div id="credit-container">
         </div>
         <div id="information-container">
-          <Information
+          { painter === 'none' ? <div></div> : <Information
             painter = {painter}
-          />
+          />}
         </div>
       </div>
     );

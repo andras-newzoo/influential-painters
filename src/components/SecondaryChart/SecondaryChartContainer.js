@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Tab } from 'semantic-ui-react'
 
 import SecondaryChart from './SecondaryChart'
@@ -6,33 +6,88 @@ import SecondaryChart from './SecondaryChart'
 const height = 320 ,
       width = 555
 
-const panes = [
-  { menuItem: 'Number of paintings', render: () => <Tab.Pane>
-    <SecondaryChart
-      height = {height }
-      width = {width}
+class SecondaryChartContainer extends Component {
 
-    />
-  </Tab.Pane> },
-  { menuItem: 'Nationality', render: () => <Tab.Pane>
-    <SecondaryChart
-     height = {height}
-     width = {width}
 
-    />
-  </Tab.Pane> },
-  { menuItem: 'Artistic Movement', render: () => <Tab.Pane>
-    <SecondaryChart
+  render() {
 
-    />
-  </Tab.Pane> },
-  { menuItem: 'Age', render: () => <Tab.Pane>
-    <SecondaryChart
+    const { handleClick } = this.props
 
-    />
-  </Tab.Pane> }
-]
+    return (
+        <Tab panes={
 
-const SecondaryChartContainer = () => <Tab panes={panes} />
+          [
+           { menuItem: 'Number of paintings', render: () => <Tab.Pane>
+             <div className='first'>
+               <SecondaryChart
+                 key = {'paintings'}
+                 chartClass = {'paintings'}
+                 height = {height}
+                 width = {width * .95}
+                 yKey = {"paintings"}
+
+                 xMax = {19.2}
+                 yDomain = {[ "50<", "<50", "100<", "200<", "300<", "700<"]}
+
+                 handleClick = {handleClick}
+
+               />
+           </div>
+           </Tab.Pane> },
+           { menuItem: 'Nationality', render: () => <Tab.Pane>
+             <div className='second'>
+               <SecondaryChart
+                 key = {'nationatlity'}
+                 chartClass = {'nationatlity'}
+                height = {height}
+                width = {width * .95}
+
+                yKey = {"nationality"}
+
+                xMax = {13.2}
+                yDomain = {[ "Flemish",  "Russian", "Dutch", "Spanish",  "Italian", "French"]}
+
+                handleClick = {handleClick}
+
+               />
+             </div>
+           </Tab.Pane> },
+           { menuItem: 'Artistic Movement', render: () => <Tab.Pane>
+             <SecondaryChart
+               key = {'movement'}
+               chartClass = {'movement'}
+              height = {height}
+              width = {width * .95}
+
+              yKey = {"movement"}
+
+              xMax = {5.05}
+              yDomain = {[ "Romanticism" ,"High Renaissance", "Post-Impressionism", "Northern Renaissance",  "Impressionism", "Baroque"]}
+
+              handleClick = {handleClick}
+
+             />
+           </Tab.Pane> },
+           { menuItem: 'Age', render: () => <Tab.Pane>
+             <SecondaryChart
+               key = {'age'}
+               chartClass = {'age'}
+              height = {height}
+              width = {width * .95}
+
+              yKey = {"age"}
+
+              xMax = {12.15}
+              yDomain = { ["Over 90 years" ,"80-89 years" ,"70-79 years", "60-69 years", "50-59 years",  "40-49 years", "30-39 years"]}
+
+              handleClick = {handleClick}
+             />
+           </Tab.Pane> }
+         ]
+
+                } renderActiveOnly={true}/>
+    );
+}}
+
 
 export default SecondaryChartContainer

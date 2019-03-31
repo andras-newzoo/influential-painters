@@ -6,25 +6,19 @@ class Carousel extends Component {
   constructor(props){
     super(props)
     this.state = {
-      empty: false
+      empty: true
     }
   }
 
-
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps, prevState){
 
     const { painter } = this.props,
           { empty } =this.state
-    // console.log(prevProps.painter)
 
-    if(prevProps.painter === undefined){
-      this.setState(() => ({empty: true}))
-    } else if (prevProps.painter !== painter){
+    if(prevProps.painter !== painter && empty === true){
       this.setState(() => ({empty: false}))
-    }
-
-    if(!empty && painter !== undefined){
-        this.setState(() => ({empty: true}))
+    } else if (prevProps.painter === painter && empty === false){
+      this.setState(() => ({empty: true}))
     }
 
   }
@@ -41,23 +35,23 @@ class Carousel extends Component {
 
     return (
       <Slider {...settings}>
-         <div key={`${painter}1`} className='image-holder'>
-           <img className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}1.jpg`)} />
+         <div className='image-holder'>
+           <img key={`${painter}1`} className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}1.jpg`)} />
          </div>
-         <div key={`${painter}2`} className='image-holder'>
-            <img className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}2.jpg`)} />
+         <div className='image-holder'>
+            <img key={`${painter}2`} className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}2.jpg`)} />
          </div>
-         <div key={`${painter}3`} className='image-holder'>
-            <img className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}3.jpg`)} />
+         <div  className='image-holder'>
+            <img key={`${painter}3`} className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}3.jpg`)} />
          </div>
-         <div key={`${painter}4`} className='image-holder'>
-            <img className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}4.jpg`)} />
+         <div  className='image-holder'>
+            <img key={`${painter}4`} className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}4.jpg`)} />
          </div>
-         <div key={`${painter}5`} className='image-holder'>
-            <img className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}5.jpg`)} />
+         <div className='image-holder'>
+            <img key={`${painter}5`} className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}5.jpg`)} />
          </div>
-         <div key={`${painter}6`} className='image-holder'>
-            <img className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}6.jpg`)} />
+         <div className='image-holder'>
+            <img key={`${painter}6`} className='carouselImage' alt={`${painter}`} src={require(`../../data/pics/${painter}/${painter}6.jpg`)} />
          </div>
        </Slider>
     )
@@ -70,6 +64,7 @@ class Carousel extends Component {
             settings = {
                dots: true,
                infinite: true,
+               arrows: false,
                speed: 500,
                autoplay: false
              };
