@@ -67,14 +67,10 @@ class SecondaryChart extends Component {
         .attr('class',d => `${yKey}` )
         .attr('x', xScale(0))
         .attr('y', d => yScale(d.key))
-        .attr('width', 0)
+        .attr('width', d => xScale(d.values.length))
         .attr('height', yScale.bandwidth())
         .attr('fill', d => metric.includes(d.key) ? color : basecolor)
         .on('click', this.props.handleClick)
-            .merge(rects)
-            .transition('rects-in')
-            .duration(long)
-            .attr('width', d => xScale(d.values.length))
 
   }
 

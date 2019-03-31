@@ -18,8 +18,8 @@ class App extends Component {
     this.state = {
       painter : 'none' ,
       colorPicker: 1,
-      metric: '',
-      metricKey: '',
+      metric: 'none',
+      metricKey: 'none',
       secondaryChartMetric: ['none'],
     }
   }
@@ -30,12 +30,21 @@ class App extends Component {
   }
 
   handleMainChartClick = (d) => {
-      let colorPicker = this.colorPickerFunction()
+      let colorPicker = this.colorPickerFunction(),
+          painterMetrics = []
+
+      painterMetrics.push(d.age)
+      painterMetrics.push(d.movement)
+      painterMetrics.push(d.nationality)
+      painterMetrics.push(d.paintings)
+
       this.setState(() => ({
             painter: d.id,
-            colorPicker: colorPicker}))
-    //  console.log(this.state)
-
+            metric: 'none',
+            metricKey: 'none',
+            colorPicker: colorPicker,
+            secondaryChartMetric: painterMetrics}))
+      //console.log(this.state)
   }
 
   handleSecondaryChartClick = (d, i, n) => {
@@ -66,7 +75,7 @@ class App extends Component {
 
     this.formatData(data)
     data.sort((a,b) => a.start - b.start)
-    console.log(secondaryChartMetric)
+    //console.log(secondaryChartMetric)
 
     return (
       <div className="App">
