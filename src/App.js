@@ -5,6 +5,8 @@ import data from './data/data.json'
 import colors from './data/colors.js'
 import title from './img/title.png'
 
+import { select} from 'd3-selection'
+
 import SecondaryChartContainer from './components/SecondaryChart/SecondaryChartContainer'
 import MainChart from './components/MainChart/MainChart'
 import Information from './components/Information/Information'
@@ -16,7 +18,9 @@ class App extends Component {
     this.state = {
       painter : 'none' ,
       colorPicker: 1,
-      secondary: ''
+      metric: '',
+      metricKey: '',
+      secondaryChartMetric: ['none'],
     }
   }
 
@@ -34,14 +38,16 @@ class App extends Component {
 
   }
 
-  handleSecondaryChartClick = (d) => {
-      let colorPicker = this.colorPickerFunction()
+  handleSecondaryChartClick = (d, i, n) => {
+      let colorPicker = this.colorPickerFunction(),
+          metricKey = select(n[i]).attr('class')
+
       this.setState(() => ({
-            secondary: d.key,
+            metric: d.key,
+            metricKey: metricKey,
             colorPicker: colorPicker,
-            painter: 'none'}))
-
-
+            painter: 'none',
+            secondaryChartMetric: [d.key]}))
   }
 
   formatData(raw){
@@ -55,13 +61,12 @@ class App extends Component {
 
 
   render() {
-    const { painter, colorPicker } = this.state,
+    const { painter, colorPicker, metric, metricKey, secondaryChartMetric } = this.state,
           color = colors[colorPicker]
-
 
     this.formatData(data)
     data.sort((a,b) => a.start - b.start)
-    // console.log(data)
+    console.log(secondaryChartMetric)
 
     return (
       <div className="App">
@@ -73,6 +78,8 @@ class App extends Component {
             painterHighlight = {painter}
             handleClick = {this.handleMainChartClick}
             color = {color}
+            metric = {metric}
+            metricKey = {metricKey}
           />
         </div>
         <div id="header-container">
@@ -82,7 +89,13 @@ class App extends Component {
         </div>
         <div id="secondary-chart-container">
             <SecondaryChartContainer
+
+
               handleClick = {this.handleSecondaryChartClick}
+
+              color = {color}
+              metric = {[...secondaryChartMetric]}
+
             />
         </div>
         <div id="credit-container">

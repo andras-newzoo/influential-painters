@@ -11,7 +11,7 @@ class SecondaryChartContainer extends Component {
 
   render() {
 
-    const { handleClick } = this.props
+    const { handleClick, color, metric } = this.props
 
     return (
         <Tab panes={
@@ -28,6 +28,9 @@ class SecondaryChartContainer extends Component {
 
                  xMax = {19.2}
                  yDomain = {[ "50<", "<50", "100<", "200<", "300<", "700<"]}
+
+                 color = {color}
+                 metric = {metric}
 
                  handleClick = {handleClick}
 
@@ -47,6 +50,9 @@ class SecondaryChartContainer extends Component {
                 xMax = {13.2}
                 yDomain = {[ "Flemish",  "Russian", "Dutch", "Spanish",  "Italian", "French"]}
 
+                color = {color}
+                metric = {metric}
+
                 handleClick = {handleClick}
 
                />
@@ -64,6 +70,9 @@ class SecondaryChartContainer extends Component {
               xMax = {5.05}
               yDomain = {[ "Romanticism" ,"High Renaissance", "Post-Impressionism", "Northern Renaissance",  "Impressionism", "Baroque"]}
 
+              color = {color}
+              metric = {metric}
+
               handleClick = {handleClick}
 
              />
@@ -79,6 +88,9 @@ class SecondaryChartContainer extends Component {
 
               xMax = {12.15}
               yDomain = { ["Over 90 years" ,"80-89 years" ,"70-79 years", "60-69 years", "50-59 years",  "40-49 years", "30-39 years"]}
+
+              color = {color}
+              metric = {metric}
 
               handleClick = {handleClick}
              />

@@ -18,10 +18,16 @@ class MainChart extends Component {
   componentDidUpdate(prevProps){
 
 
+
     if (prevProps.painterHighlight !== this.props.painterHighlight){
       // console.log(this.props.painterHighlight)
       this.higlightPainter()
     }
+
+    if(this.props.metric !== prevProps.metric){
+      this.higlightGroup()
+    }
+
 
   }
 
@@ -67,8 +73,6 @@ class MainChart extends Component {
         .attr('text-anchor', 'middle')
         .text(d => d.shortName)
 
-
-
   }
 
   higlightPainter(){
@@ -76,11 +80,20 @@ class MainChart extends Component {
     const { painterHighlight, transition, basecolor, color } = this.props
 
     this.chartArea.selectAll('.main-chart-rects')
-          .transition('painter-higlight')
+          .transition('painter-highlight')
           .duration(transition.short)
           .attr('fill', d => painterHighlight === d.id ? color : basecolor )
 
+  }
 
+  higlightGroup(){
+
+    const { transition, basecolor, color, metric, metricKey } = this.props
+
+    this.chartArea.selectAll('.main-chart-rects')
+          .transition('group-highlight')
+          .duration(transition.short)
+          .attr('fill', d => metric === d[metricKey] ? color : basecolor )
 
   }
 

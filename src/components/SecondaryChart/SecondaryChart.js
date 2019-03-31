@@ -29,18 +29,23 @@ class SecondaryChart extends Component {
       this.higlightPainter()
     }
 
+    if (prevProps.metri !== this.props.metric){
+      this.highlightGroup()
+    }
+
+
   }
 
 
   initVis(){
     //
     const svg = select(this.node),
-          { chartClass, height, width, transition, margin, basecolor} = this.props,
+          { chartClass, height, width, transition, margin, basecolor, metric, color} = this.props,
           { yKey, yDomain, xMax} = this.props,
           { long } = transition,
           { chartWidth, chartHeight } = updateSvg(svg, height, width, margin),
           nested = nest().key(d => d[yKey]).entries(data).filter(d => yDomain.includes(d.key))
-    
+
     // console.log(width, height)
     //console.log(nested)
 
@@ -52,30 +57,34 @@ class SecondaryChart extends Component {
     const yScale = scaleBand().range([chartHeight, 0]).domain(yDomain).paddingInner(.2).paddingOuter(.1),
           xScale = scaleLinear().range([0, chartWidth]).domain([0, xMax])
 
-    //console.log(xScale.domain())
+    // console.log(metric)
     svg.select(`.${chartClass}-y-axis`).call(axisRight(yScale).tickSizeOuter(0).tickSizeInner(2)).selectAll('.tick line').remove()
 
-    const rects = this.chartArea.selectAll(`.${chartClass}-chart-rects`).data(nested)
+    const rects = this.chartArea.selectAll(`.${yKey}`).data(nested)
 
     rects.enter()
         .append('rect')
-        .attr('class',d => `${chartClass}-chart-rects` )
+        .attr('class',d => `${yKey}` )
         .attr('x', xScale(0))
         .attr('y', d => yScale(d.key))
         .attr('width', 0)
         .attr('height', yScale.bandwidth())
-        .attr('fill', basecolor)
+        .attr('fill', d => metric.includes(d.key) ? color : basecolor)
         .on('click', this.props.handleClick)
             .merge(rects)
             .transition('rects-in')
             .duration(long)
             .attr('width', d => xScale(d.values.length))
 
-
-
   }
 
-  componentRerender(prevProps){
+  highlightGroup(){
+      const { yKey, transition, color, basecolor, metric } = this.props
+
+      this.chartArea.selectAll(`.${yKey}`)
+          .transition('higlightGroup')
+          .duration(transition.short)
+          .attr('fill', d => metric.includes(d.key) ? color : basecolor)
 
   }
 
