@@ -9,6 +9,7 @@
   font-size: 1rem;
 }
 
-.paintings-y-axis text {
-  font-size: .8rem;
+.paintings-y-axis text,
+.age-y-axis text {
+  font-size: .9rem;
 }

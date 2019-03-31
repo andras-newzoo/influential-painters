@@ -39,10 +39,10 @@ rect {
 
 .App{
   position: relative;
-  top: 1vh;
+  top: .5vh;
   margin: 2vh auto;
   width: 1400px;
-  height: 700px;
+  height: 720px;
 }
 
 #main-chart-container {
@@ -57,18 +57,22 @@ rect {
   position: absolute;
   top: 0;
   left: 0;
-  width: 40%;
+  width: 45%;
   height: 15%;
   /* border: 1px solid #333; */
 }
 
 #text-container {
   position: absolute;
-  top: 0;
-  left: 43%;
-  width: 35%;
+  top: .5%;
+  left: 48%;
+  width: 30%;
   height: 15%;
   /* border: 1px solid #333; */
+}
+
+#text-container p {
+  margin-bottom: 5px !important;
 }
 
 #title-img{
@@ -83,8 +87,8 @@ rect {
   position: absolute;
   top: 15%;
   left: 0;
-  width: 40%;
-  height: 45%;
+  width: 45%;
+  height: 40%;
   /* border: 1px solid #333; */
 }
 

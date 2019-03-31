@@ -16,37 +16,27 @@ class MainChart extends Component {
 
 
   componentDidUpdate(prevProps){
-
-    console.log(this.props.color)
-    console.log(this.props.painterHighlight)
-    console.log(prevProps.painterHighlight)
+    //
+    // console.log(this.props.painterHighlight)
+    // console.log(prevProps.painterHighlight)
 
     if (this.props.color !== prevProps.color){
+
         if (this.props.metric === 'none'){
           this.higlightPainter()
-        } else {
-            this.higlightGroup()
+        }
+
+        if (this.props.metric !== 'none'){
+              this.higlightGroup()
         }
     }
-
-    if (prevProps.painterHighlight === 'none' ||  prevProps.painterHighlight !== this.props.painterHighlight) {
-      // console.log(this.props.painterHighlight)
-      this.higlightPainter()
-    }
-
-    if (this.props.metric !== prevProps.metric){
-      this.higlightGroup()
-    }
-
-
   }
 
 
   initVis(){
 
     const svg = select(this.node),
-          { data, width, height, margin, transition , basecolor} = this.props,
-          { long } = transition,
+          { data, width, height, margin , basecolor} = this.props,
           { chartWidth, chartHeight } = updateSvg(svg, height, width, margin)
 
     // console.log(chartWidth)
@@ -88,7 +78,7 @@ class MainChart extends Component {
   higlightPainter(){
 
     const { painterHighlight, transition, basecolor, color } = this.props
-    console.log(color)
+
     this.chartArea.selectAll('.main-chart-rects')
           .transition('painter-highlight')
           .duration(transition.short)

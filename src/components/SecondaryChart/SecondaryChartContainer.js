@@ -3,7 +3,7 @@ import { Tab } from 'semantic-ui-react'
 
 import SecondaryChart from './SecondaryChart'
 
-const height = 320 ,
+const height = 285 ,
       width = 555
 
 class SecondaryChartContainer extends Component {
