@@ -1,0 +1,28 @@
+const movements = [
+  { key: '1', value: 'Impressionism, Post-Impressionism', text: 'Impressionism, Post-Impressionism' },
+  { key: '2', value: 'Primitivism', text: 'Primitivism' },
+  { key: '3', value: 'Surrealism', text: 'Surrealism' },
+  { key: '4', value: 'Abstract Expressionism', text: 'Abstract Expressionism' },
+  { key: '5', value: 'Byzantine Art', text: 'Byzantine Art' },
+  { key: '6', value: 'Cubism', text: 'Cubism' },
+  { key: '7', value: 'Early Renaissance', text: 'Early Renaissance' },
+  { key: '8', value: 'Expressionism, Abstractionism', text: 'Expressionism, Abstractionism' },
+  { key: '9', value: 'Expressionism, Abstractionism, Surrealism', text: 'Expressionism, Abstractionism, Surrealism' },
+  { key: '10', value: 'High Renaissance, Mannerism', text: 'High Renaissance, Mannerism' },
+  { key: '11', value: 'Mannerism', text: 'Mannerism' },
+  { key: '12', value: 'Neoplasticism', text: 'Neoplasticism' },
+  { key: '13', value: 'Pop Art', text: 'Pop Art' },
+  { key: '14', value: 'Primitivism, Surrealism', text: 'Primitivism, Surrealism' },
+  { key: '15', value: 'Proto Renaissance', text: 'Proto Renaissance' },
+  { key: '16', value: 'Realism', text: 'Realism' },
+  { key: '17', value: 'Realism, Impressionism', text: 'Realism, Impressionism' },
+  { key: '18', value: 'Social Realism, Muralism', text: 'Social Realism, Muralism' },
+  { key: '19', value: 'Suprematism', text: 'Suprematism' },
+  { key: '20', value: 'Surrealism, Impressionism', text: 'Surrealism, Impressionism' },
+  { key: '21', value: 'Symbolism', text: 'Symbolism' },
+  { key: '22', value: 'Symbolism, Art Nouveau', text: 'Symbolism, Art Nouveau' },
+  { key: '23', value: 'Symbolism, Expressionism', text: 'Symbolism, Expressionism' },
+  { key: '24', value: 'Symbolism, Post-Impressionism', text: 'Symbolism, Post-Impressionism' },
+]
+
+export default movements

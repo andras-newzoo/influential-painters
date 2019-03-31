@@ -9,7 +9,7 @@ class Information extends Component {
 
 
   render(){
-    const { painter } = this.props
+    const { painter, bio, name } = this.props
 
 
     return(
@@ -17,7 +17,11 @@ class Information extends Component {
         <Carousel
           painter = {painter}
         />
-        
+      <div id="description-container">
+        <h2>{name}</h2>
+        <p>{bio}</p>
+      </div>
+
       </div>
     )
   }

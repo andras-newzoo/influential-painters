@@ -109,7 +109,7 @@ MainChart.defaultProps = {
       long: 1000,
       short: 300
     },
-    basecolor: '#444444',
+    basecolor: '#aaaaaa',
     margin :{
       top: 0,
       left: 0,

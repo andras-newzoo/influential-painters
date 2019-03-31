@@ -1,6 +1,6 @@
 
-.y-axis {
-  stroke-opacity: .2
+.domain {
+  stroke: #aaaaaa;
 }
 
 .y-axis text {
@@ -12,4 +12,11 @@
 .paintings-y-axis text,
 .age-y-axis text {
   font-size: .9rem;
+}
+
+#nationality-dropdown,
+#movements-dropdown{
+  position: absolute;
+  bottom: 22px;
+  right: 20px;
 }

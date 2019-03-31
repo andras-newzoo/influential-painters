@@ -19,10 +19,12 @@ class App extends Component {
     super(props)
     this.state = {
       painter : 'none' ,
+      name: '',
       colorPicker: 1,
       metric: 'none',
       metricKey: 'none',
       secondaryChartMetric: ['none'],
+      bio: '',
     }
   }
 
@@ -45,7 +47,9 @@ class App extends Component {
             metric: 'none',
             metricKey: 'none',
             colorPicker: colorPicker,
-            secondaryChartMetric: painterMetrics}))
+            secondaryChartMetric: painterMetrics,
+            bio: d.bio,
+            name: d.name}))
       //console.log(this.state)
   }
 
@@ -80,6 +84,28 @@ class App extends Component {
           secondaryChartMetric: painterMetrics}))
   }
 
+  handleNationalityDropdown = (event, {value}) => {
+    let colorPicker = this.colorPickerFunction()
+
+    this.setState(() => ({
+          metric: value,
+          metricKey: 'nationality',
+          colorPicker: colorPicker,
+          painter: 'none',
+          secondaryChartMetric: []}))
+  }
+
+  handleMovementDropDown = (event, {value}) => {
+    let colorPicker = this.colorPickerFunction()
+
+    this.setState(() => ({
+          metric: value,
+          metricKey: 'movement',
+          colorPicker: colorPicker,
+          painter: 'none',
+          secondaryChartMetric: []}))
+  }
+
   formatData(raw){
     raw.forEach(d => {
       d.id = d.name.toLowerCase().replace(/[ -]/g,"")
@@ -94,7 +120,7 @@ class App extends Component {
 
 
   render() {
-    const { painter, colorPicker, metric, metricKey, secondaryChartMetric } = this.state,
+    const { painter, colorPicker, metric, metricKey, secondaryChartMetric, bio, name } = this.state,
           color = colors[colorPicker],
           dropdownData = [...data]
 
@@ -127,6 +153,7 @@ class App extends Component {
             placeholder='Search...'
             fluid
             selection
+            search
             options={dropdownData}
           />
         </div>
@@ -138,6 +165,9 @@ class App extends Component {
               color = {color}
               metric = {[...secondaryChartMetric]}
 
+              handleNationalityDropDown = {this.handleNationalityDropdown}
+              handleMovementDropDown = {this.handleMovementDropDown}
+
             />
         </div>
         <div id="credit-container">
@@ -145,6 +175,8 @@ class App extends Component {
         <div id="information-container">
           { painter === 'none' ? <div></div> : <Information
             painter = {painter}
+            bio = {bio}
+            name = {name}
           />}
         </div>
       </div>

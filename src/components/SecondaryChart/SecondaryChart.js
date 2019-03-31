@@ -40,9 +40,8 @@ class SecondaryChart extends Component {
   initVis(){
     //
     const svg = select(this.node),
-          { chartClass, height, width, transition, margin, basecolor, metric, color} = this.props,
+          { chartClass, height, width, margin, basecolor, metric, color} = this.props,
           { yKey, yDomain, xMax} = this.props,
-          { long } = transition,
           { chartWidth, chartHeight } = updateSvg(svg, height, width, margin),
           nested = nest().key(d => d[yKey]).entries(data).filter(d => yDomain.includes(d.key))
 
@@ -50,7 +49,6 @@ class SecondaryChart extends Component {
     //console.log(nested)
 
     appendArea(svg, `${chartClass}-chart-area`, margin.left, margin.top)
-    appendArea(svg, `${chartClass}-y-axis y-axis`, margin.left, margin.top)
 
     this.chartArea = select(`.${chartClass}-chart-area`)
 
@@ -58,7 +56,6 @@ class SecondaryChart extends Component {
           xScale = scaleLinear().range([0, chartWidth]).domain([0, xMax])
 
     // console.log(metric)
-    svg.select(`.${chartClass}-y-axis`).call(axisRight(yScale).tickSizeOuter(0).tickSizeInner(2)).selectAll('.tick line').remove()
 
     const rects = this.chartArea.selectAll(`.${yKey}`).data(nested)
 
@@ -71,6 +68,9 @@ class SecondaryChart extends Component {
         .attr('height', yScale.bandwidth())
         .attr('fill', d => metric.includes(d.key) ? color : basecolor)
         .on('click', this.props.handleClick)
+
+    appendArea(svg, `${chartClass}-y-axis y-axis`, margin.left, margin.top)
+    svg.select(`.${chartClass}-y-axis`).call(axisRight(yScale).tickSizeOuter(0).tickSizeInner(2)).selectAll('.tick line').remove()
 
   }
 
@@ -100,7 +100,7 @@ SecondaryChart.defaultProps = {
       long: 1000,
       short: 300
     },
-    basecolor: '#444444',
+    basecolor: '#aaaaaa',
     margin :{
       top: 0,
       right: 0,

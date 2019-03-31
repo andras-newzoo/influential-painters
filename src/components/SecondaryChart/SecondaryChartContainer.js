@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { Tab } from 'semantic-ui-react'
+import { Tab, Dropdown} from 'semantic-ui-react'
 
 import SecondaryChart from './SecondaryChart'
 
+import nationalities from '../../data/nationalities'
+import movements from '../../data/movements'
+
 const height = 285 ,
-      width = 555
+      width = 625
 
 class SecondaryChartContainer extends Component {
 
@@ -13,11 +16,14 @@ class SecondaryChartContainer extends Component {
 
     const { handleClick, color, metric } = this.props
 
+    nationalities.sort((a,b) => a.key.localeCompare(b.key))
+    movements.sort((a,b) => a.text.localeCompare(b.text))
+
     return (
         <Tab panes={
 
           [
-           { menuItem: 'Number of paintings', render: () => <Tab.Pane>
+           { menuItem: 'Number of Paintings', render: () => <Tab.Pane>
              <div className='first'>
                <SecondaryChart
                  key = {'paintings'}
@@ -27,7 +33,7 @@ class SecondaryChartContainer extends Component {
                  yKey = {"paintings"}
 
                  xMax = {19.2}
-                 yDomain = {[ "50<", "<50", "100<", "200<", "300<", "700<"]}
+                 yDomain = {[ "50 <", "< 50",  "100 <", "200 <", "300 <", "700 <"]}
 
                  color = {color}
                  metric = {metric}
@@ -47,7 +53,7 @@ class SecondaryChartContainer extends Component {
 
                 yKey = {"nationality"}
 
-                xMax = {13.2}
+                xMax = {12}
                 yDomain = {[ "Flemish",  "Russian", "Dutch", "Spanish",  "Italian", "French"]}
 
                 color = {color}
@@ -56,6 +62,14 @@ class SecondaryChartContainer extends Component {
                 handleClick = {handleClick}
 
                />
+             <div id="nationality-dropdown">
+                 <Dropdown onChange={this.props.handleNationalityDropDown}
+                   placeholder='Search for other nationalities:'
+                   selection
+                   search
+                   options = {nationalities}
+                 />
+               </div>
              </div>
            </Tab.Pane> },
            { menuItem: 'Artistic Movement', render: () => <Tab.Pane>
@@ -76,6 +90,14 @@ class SecondaryChartContainer extends Component {
               handleClick = {handleClick}
 
              />
+           <div id="movements-dropdown">
+                 <Dropdown onChange={this.props.handleMovementDropDown}
+                   placeholder='Search for other movements:'
+                   selection
+                   search
+                   options = {movements}
+                 />
+               </div>
            </Tab.Pane> },
            { menuItem: 'Age', render: () => <Tab.Pane>
              <SecondaryChart

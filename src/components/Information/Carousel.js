@@ -66,7 +66,8 @@ class Carousel extends Component {
                infinite: true,
                arrows: false,
                speed: 500,
-               autoplay: false
+               autoplay: true,
+               autoplaySpeed: 8000,
              };
 
     return (
