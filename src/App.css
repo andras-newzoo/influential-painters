@@ -128,14 +128,6 @@ i.black.icon {
   padding: 4px 10px 5px 10px;
 }
 
-#reset-button:hover {
-  top: 8px;
-}
-
-#reset-button:active {
-  top: 9px;
-}
-
 #credit-container {
   position: absolute;
   top: 75%;

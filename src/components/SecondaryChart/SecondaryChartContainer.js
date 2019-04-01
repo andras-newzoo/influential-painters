@@ -14,7 +14,7 @@ class SecondaryChartContainer extends Component {
 
   render() {
 
-    const { handleClick, color, metric } = this.props
+    const { handleClick, color, metric, reset } = this.props
 
     nationalities.sort((a,b) => a.key.localeCompare(b.key))
     movements.sort((a,b) => a.text.localeCompare(b.text))
@@ -35,6 +35,7 @@ class SecondaryChartContainer extends Component {
                  xMax = {19.2}
                  yDomain = {[ "< 50", "50 <", "100 <", "200 <", "300 <", "700 <"]}
 
+                 reset = {reset}
                  color = {color}
                  metric = {metric}
 
@@ -53,6 +54,7 @@ class SecondaryChartContainer extends Component {
 
                 yKey = {"nationality"}
 
+                reset = {reset}
                 xMax = {12}
                 yDomain = {[ "Flemish",  "Russian", "Dutch", "Spanish",  "Italian", "French"]}
 
@@ -80,6 +82,7 @@ class SecondaryChartContainer extends Component {
               width = {width * .95}
 
               yKey = {"movement"}
+              reset = {reset}
 
               xMax = {5.05}
               yDomain = {[ "Romanticism" ,"High Renaissance", "Post-Impressionism", "Northern Renaissance",  "Impressionism", "Baroque"]}
@@ -107,6 +110,7 @@ class SecondaryChartContainer extends Component {
               width = {width * .95}
 
               yKey = {"age"}
+              reset = {reset}
 
               xMax = {12.15}
               yDomain = { ["Over 90 years" ,"80-89 years" ,"70-79 years", "60-69 years", "50-59 years",  "40-49 years", "30-39 years"]}

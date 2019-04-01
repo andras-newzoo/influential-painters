@@ -52,6 +52,27 @@ createUpdateYAxis = (
 
   axis.call(axisCall).selectAll('.domain').remove()
   axis.selectAll('.domain').remove()
+},
+appendAxisText = (
+  area, xScale, year, up, down
+) => {
+
+  area.append('line')
+      .attr('stroke', '#cccccc')
+      .attr('x1', xScale(year))
+      .attr('x2', xScale(year))
+      .attr('y1', up)
+      .attr('y2', down)
+      .attr('opacity', 0.5)
+
+  area.append('text')
+      .attr('fill', '#cccccc')
+      .attr('x', xScale(year))
+      .attr('y', up - 5)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '.9rem')
+      .text(year)
+
 }
 
-export { updateSvg, appendArea, appendTitle, moveTitle, createUpdateYAxis, createUpdateXAxis }
+export { updateSvg, appendArea, appendTitle, moveTitle, createUpdateYAxis, createUpdateXAxis, appendAxisText}

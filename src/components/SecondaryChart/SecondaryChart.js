@@ -24,12 +24,10 @@ class SecondaryChart extends Component {
 
   componentDidUpdate(prevProps){
 
-    if (prevProps.painterHighlight !== this.props.painterHighlight){
-      // console.log(this.props.painterHighlight)
-      this.higlightPainter()
-    }
-
-    if (prevProps.metri !== this.props.metric){
+    // console.log(this.props.reset)
+    if(this.props.reset){
+      this.resetColors()
+    } else if (prevProps.metric !== this.props.metric){
       this.highlightGroup()
     }
 
@@ -40,13 +38,12 @@ class SecondaryChart extends Component {
   initVis(){
     //
     const svg = select(this.node),
-          { chartClass, height, width, margin, basecolor, metric, color} = this.props,
+          { chartClass, height, width, margin, darkcolor, basecolor, metric, color, reset} = this.props,
           { yKey, yDomain, xMax} = this.props,
           { chartWidth, chartHeight } = updateSvg(svg, height, width, margin),
-          nested = nest().key(d => d[yKey]).entries(data).filter(d => yDomain.includes(d.key))
+          nested = nest().key(d => d[yKey]).entries(data).filter(d => yDomain.includes(d.key)),
+          othercolor = color === undefined ? darkcolor : basecolor
 
-    // console.log(width, height)
-    //console.log(nested)
 
     appendArea(svg, `${chartClass}-chart-area`, margin.left, margin.top)
 
@@ -55,7 +52,6 @@ class SecondaryChart extends Component {
     const yScale = scaleBand().range([chartHeight, 0]).domain(yDomain).paddingInner(.2).paddingOuter(.1),
           xScale = scaleLinear().range([0, chartWidth]).domain([0, xMax])
 
-    // console.log(metric)
 
     const rects = this.chartArea.selectAll(`.${yKey}`).data(nested)
 
@@ -66,26 +62,38 @@ class SecondaryChart extends Component {
         .attr('y', d => yScale(d.key))
         .attr('width', d => xScale(d.values.length))
         .attr('height', yScale.bandwidth())
-        .attr('fill', d => metric.includes(d.key) ? color : basecolor)
+        .attr('fill', d => metric.includes(d.key) ? color : othercolor)
         .on('click', this.props.handleClick)
+
+
+
 
     appendArea(svg, `${chartClass}-y-axis y-axis`, margin.left, margin.top)
     svg.select(`.${chartClass}-y-axis`).call(axisRight(yScale).tickSizeOuter(0).tickSizeInner(2)).selectAll('.tick line').remove()
-
+    select(`.${chartClass}-y-axis`).select('.domain').attr('stroke', othercolor)
   }
 
   highlightGroup(){
-      const { yKey, transition, color, basecolor, metric } = this.props
+      const { yKey, transition, color, basecolor,darkcolor, metric } = this.props
 
       this.chartArea.selectAll(`.${yKey}`)
           .transition('higlightGroup')
           .duration(transition.short)
           .attr('fill', d => metric.includes(d.key) ? color : basecolor)
 
+    select('#reset-button').style('background', darkcolor)
+
   }
 
-  higlightPainter(){
+  resetColors(){
+      const { yKey, transition, darkcolor, basecolor } = this.props
 
+      this.chartArea.selectAll(`.${yKey}`)
+          .transition('reset')
+          .duration(transition.short)
+          .attr('fill', darkcolor)
+
+    select('#reset-button').style('background', basecolor)
   }
 
   render() {
@@ -101,6 +109,7 @@ SecondaryChart.defaultProps = {
       short: 300
     },
     basecolor: '#cccccc',
+    darkcolor: '#333333',
     margin :{
       top: 0,
       right: 0,

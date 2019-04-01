@@ -5,7 +5,7 @@ import { scaleBand, scaleLinear } from 'd3-scale'
 import { select } from 'd3-selection'
 import 'd3-transition'
 
-import { updateSvg, appendArea } from '../chartFunctions'
+import { updateSvg, appendArea, appendAxisText } from '../chartFunctions'
 
 class MainChart extends Component {
 
@@ -20,7 +20,9 @@ class MainChart extends Component {
     // console.log(this.props.painterHighlight)
     // console.log(prevProps.painterHighlight)
 
-    if (this.props.color !== prevProps.color || this.props.painterHighlight !== prevProps.painterHighlight){
+    if(this.props.reset){
+      this.resetColors()
+    } else if (this.props.color !== prevProps.color || this.props.painterHighlight !== prevProps.painterHighlight){
 
         if (this.props.metric === 'none'){
           this.higlightPainter()
@@ -36,7 +38,7 @@ class MainChart extends Component {
   initVis(){
 
     const svg = select(this.node),
-          { data, width, height, margin , basecolor} = this.props,
+          { data, width, height, margin , darkcolor, basecolor} = this.props,
           { chartWidth, chartHeight } = updateSvg(svg, height, width, margin)
 
     // console.log(chartWidth)
@@ -52,6 +54,14 @@ class MainChart extends Component {
     const rects = this.chartArea.selectAll('.main-chart-rects').data(data),
           texts = this.chartArea.selectAll('.main-chart-text').data(data)
 
+    appendAxisText(this.chartArea, this.xScale, 1800, 380, 500)
+    appendAxisText(this.chartArea, this.xScale, 1900, 15, 500)
+    appendAxisText(this.chartArea, this.xScale, 1700, 460, 500)
+    appendAxisText(this.chartArea, this.xScale, 1600, 460, 720)
+    appendAxisText(this.chartArea, this.xScale, 1500, 550, 720)
+    appendAxisText(this.chartArea, this.xScale, 1400, 650, 720)
+    appendAxisText(this.chartArea, this.xScale, 1300, 680, 720)
+
     rects.enter()
         .append('rect')
         .attr('class',d => `main-chart-rects` )
@@ -59,7 +69,7 @@ class MainChart extends Component {
         .attr('y', d => this.yScale(d.name))
         .attr('width', d => this.widthScale(d.years))
         .attr('height', this.yScale.bandwidth())
-        .attr('fill', basecolor)
+        .attr('fill', darkcolor)
         .attr('rx', 7)
         .on('click', this.props.handleClick)
 
@@ -73,6 +83,8 @@ class MainChart extends Component {
         .attr('text-anchor', 'middle')
         .text(d => d.shortName)
 
+        select('.domain').attr('stroke', darkcolor)
+
   }
 
   higlightPainter(){
@@ -84,6 +96,9 @@ class MainChart extends Component {
           .duration(transition.short)
           .attr('fill', d => painterHighlight === d.id ? color : basecolor )
 
+
+    select('.domain').transition('painter-highlight')
+    .duration(transition.short).style('stroke', basecolor)
   }
 
   higlightGroup(){
@@ -95,6 +110,19 @@ class MainChart extends Component {
           .duration(transition.short)
           .attr('fill', d => metric === d[metricKey] ? color : basecolor )
 
+    select('.domain').transition('group-highlight')
+    .duration(transition.short).style('stroke', basecolor)
+  }
+
+  resetColors(){
+    const { transition, darkcolor } = this.props
+
+    this.chartArea.selectAll('.main-chart-rects')
+          .transition('reset')
+          .duration(transition.short)
+          .attr('fill', darkcolor )
+
+    select('.domain').style('stroke', darkcolor)
   }
 
   render() {
@@ -110,6 +138,7 @@ MainChart.defaultProps = {
       short: 300
     },
     basecolor: '#cccccc',
+    darkcolor: '#333333',
     margin :{
       top: 0,
       left: 0,

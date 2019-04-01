@@ -20,11 +20,12 @@ class App extends Component {
     this.state = {
       painter : 'none' ,
       name: '',
-      colorPicker: 1,
+      colorPicker: -1,
       metric: 'none',
       metricKey: 'none',
-      secondaryChartMetric: ['none'],
+      secondaryChartMetric: [],
       bio: '',
+      reset: false
     }
   }
 
@@ -49,8 +50,10 @@ class App extends Component {
             colorPicker: colorPicker,
             secondaryChartMetric: painterMetrics,
             bio: d.bio,
-            name: d.name}))
+            name: d.name,
+            reset: false}))
       //console.log(this.state)
+      select('#main-chart-hint').remove()
   }
 
   handleSecondaryChartClick = (d, i, n) => {
@@ -62,18 +65,22 @@ class App extends Component {
             metricKey: metricKey,
             colorPicker: colorPicker,
             painter: 'none',
-            secondaryChartMetric: [d.key]}))
+            secondaryChartMetric: [d.key],
+            reset: false}))
+
+      select('#secondary-chart-hint').remove()
   }
 
   handleResetButtonClick = () => {
     this.setState(() => ({
       painter : 'none' ,
       name: '',
-      colorPicker: 1,
+      colorPicker: -1,
       metric: 'none',
       metricKey: 'none',
-      secondaryChartMetric: ['none'],
+      secondaryChartMetric: [],
       bio: '',
+      reset: true
     }))
   }
 
@@ -95,7 +102,8 @@ class App extends Component {
           colorPicker: colorPicker,
           secondaryChartMetric: painterMetrics,
           bio: d[0].bio,
-          name: d[0].name}))
+          name: d[0].name,
+          reset: false}))
   }
 
   handleNationalityDropdown = (event, {value}) => {
@@ -106,7 +114,8 @@ class App extends Component {
           metricKey: 'nationality',
           colorPicker: colorPicker,
           painter: 'none',
-          secondaryChartMetric: []}))
+          secondaryChartMetric: [],
+          reset: false}))
   }
 
   handleMovementDropDown = (event, {value}) => {
@@ -117,7 +126,8 @@ class App extends Component {
           metricKey: 'movement',
           colorPicker: colorPicker,
           painter: 'none',
-          secondaryChartMetric: []}))
+          secondaryChartMetric: [],
+          reset: false}))
   }
 
   formatData(raw){
@@ -134,7 +144,7 @@ class App extends Component {
 
 
   render() {
-    const { painter, colorPicker, metric, metricKey, secondaryChartMetric, bio, name } = this.state,
+    const { painter, colorPicker, metric, metricKey, secondaryChartMetric, bio, name, reset } = this.state,
           color = colors[colorPicker],
           dropdownData = [...data]
 
@@ -147,8 +157,7 @@ class App extends Component {
     return (
       <div className="App">
         <p id="main-chart-hint" >Click on any of the of the painters to highlight and find out more! <i class="fas fa-caret-right"></i></p>
-
-           <Popup position="bottom right" trigger={<Icon id="copyright-icon" color='black' circular name='question'  />} wide>
+           <Popup position="bottom right" trigger={<Icon id="copyright-icon" color='black' circular name='question'  />} wide="very">
             Designed and built by: Andras Szesztai
             <br></br>
             Images and text: Wikimedia Commons
@@ -165,6 +174,7 @@ class App extends Component {
             color = {color}
             metric = {metric}
             metricKey = {metricKey}
+            reset = {reset}
           />
         </div>
         <div id="header-container">
@@ -181,13 +191,14 @@ class App extends Component {
           />
         </div>
         <div id="secondary-chart-container">
-            <Button onClick={this.handleResetButtonClick} id="reset-button">Reset Selection</Button>
+            <Button onClick={this.handleResetButtonClick} id="reset-button">Reset</Button>
             <SecondaryChartContainer
 
               handleClick = {this.handleSecondaryChartClick}
 
               color = {color}
               metric = {[...secondaryChartMetric]}
+              reset = {reset}
 
               handleNationalityDropDown = {this.handleNationalityDropdown}
               handleMovementDropDown = {this.handleMovementDropDown}
