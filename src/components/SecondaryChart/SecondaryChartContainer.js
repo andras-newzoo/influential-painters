@@ -33,7 +33,7 @@ class SecondaryChartContainer extends Component {
                  yKey = {"paintings"}
 
                  xMax = {19.2}
-                 yDomain = {[ "50 <", "< 50",  "100 <", "200 <", "300 <", "700 <"]}
+                 yDomain = {[ "< 50", "50 <", "100 <", "200 <", "300 <", "700 <"]}
 
                  color = {color}
                  metric = {metric}
@@ -64,7 +64,7 @@ class SecondaryChartContainer extends Component {
                />
              <div id="nationality-dropdown">
                  <Dropdown onChange={this.props.handleNationalityDropDown}
-                   placeholder='Search for other nationalities:'
+                   placeholder='Search for other nationalities...'
                    selection
                    search
                    options = {nationalities}
@@ -92,7 +92,7 @@ class SecondaryChartContainer extends Component {
              />
            <div id="movements-dropdown">
                  <Dropdown onChange={this.props.handleMovementDropDown}
-                   placeholder='Search for other movements:'
+                   placeholder='Search for other movements...'
                    selection
                    search
                    options = {movements}

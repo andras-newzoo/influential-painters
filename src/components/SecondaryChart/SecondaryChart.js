@@ -100,7 +100,7 @@ SecondaryChart.defaultProps = {
       long: 1000,
       short: 300
     },
-    basecolor: '#aaaaaa',
+    basecolor: '#cccccc',
     margin :{
       top: 0,
       right: 0,

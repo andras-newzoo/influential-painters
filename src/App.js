@@ -7,7 +7,7 @@ import title from './img/title.png'
 
 import { select} from 'd3-selection'
 
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Button, Icon, Popup } from 'semantic-ui-react'
 
 import SecondaryChartContainer from './components/SecondaryChart/SecondaryChartContainer'
 import MainChart from './components/MainChart/MainChart'
@@ -63,6 +63,18 @@ class App extends Component {
             colorPicker: colorPicker,
             painter: 'none',
             secondaryChartMetric: [d.key]}))
+  }
+
+  handleResetButtonClick = () => {
+    this.setState(() => ({
+      painter : 'none' ,
+      name: '',
+      colorPicker: 1,
+      metric: 'none',
+      metricKey: 'none',
+      secondaryChartMetric: ['none'],
+      bio: '',
+    }))
   }
 
   handleMainDropDown = (event, {value}) => {
@@ -134,6 +146,15 @@ class App extends Component {
 
     return (
       <div className="App">
+        <p id="main-chart-hint" >Click on any of the of the painters to highlight and find out more! <i class="fas fa-caret-right"></i></p>
+
+           <Popup position="bottom right" trigger={<Icon id="copyright-icon" color='black' circular name='question'  />} wide>
+            Designed and built by: Andras Szesztai
+            <br></br>
+            Images and text: Wikimedia Commons
+            <br></br>
+            Data source: Best Artworks of All Time by Icaro | Kaggle
+          </Popup>
         <div id="main-chart-container">
           <MainChart
             data = {data}
@@ -160,6 +181,7 @@ class App extends Component {
           />
         </div>
         <div id="secondary-chart-container">
+            <Button onClick={this.handleResetButtonClick} id="reset-button">Reset Selection</Button>
             <SecondaryChartContainer
 
               handleClick = {this.handleSecondaryChartClick}
@@ -171,6 +193,7 @@ class App extends Component {
               handleMovementDropDown = {this.handleMovementDropDown}
 
             />
+          <p id="secondary-chart-hint" ><i class="fas fa-caret-up"></i> Click on any of the bars to highlight painters!</p>
         </div>
         <div id="credit-container">
         </div>

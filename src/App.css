@@ -53,6 +53,25 @@ rect {
   height: 100%;
 }
 
+#main-chart-hint {
+  position: absolute;
+  top: 260px;
+  right: 270px;
+  width: 185px
+}
+
+#copyright-icon{
+  position: absolute;
+  top: 5px;
+  right: 220px;
+  z-index: 99;
+  cursor: pointer;
+}
+
+i.black.icon {
+  color: #cccccc !important;
+}
+
 #header-container {
   position: absolute;
   top: 0;
@@ -90,6 +109,31 @@ rect {
   width: 45%;
   height: 40%;
   /* border: 1px solid #333; */
+}
+
+#secondary-chart-hint{
+  position: absolute;
+  bottom: -100px;
+  left: 5%;
+}
+
+#reset-button {
+  position: absolute;
+  top: 9px;
+  right: 0;
+  font-family: futura-pt, Lato,'Helvetica Neue',A rial, Helveticasans-serif !important;
+  background: #cccccc;
+  color: #fff;
+  font-weight: 400;
+  padding: 4px 10px 5px 10px;
+}
+
+#reset-button:hover {
+  top: 8px;
+}
+
+#reset-button:active {
+  top: 9px;
 }
 
 #credit-container {
@@ -132,6 +176,7 @@ rect {
   font-family: futura-pt, Lato,'Helvetica Neue',A rial, Helveticasans-serif !important;
   padding-top: 10px;
 }
+
 #description-container p {
   padding-top: 10px;
   font-family: futura-pt, Lato,'Helvetica Neue',A rial, Helveticasans-serif !important;

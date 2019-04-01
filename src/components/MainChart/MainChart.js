@@ -20,7 +20,7 @@ class MainChart extends Component {
     // console.log(this.props.painterHighlight)
     // console.log(prevProps.painterHighlight)
 
-    if (this.props.color !== prevProps.color){
+    if (this.props.color !== prevProps.color || this.props.painterHighlight !== prevProps.painterHighlight){
 
         if (this.props.metric === 'none'){
           this.higlightPainter()
@@ -78,7 +78,7 @@ class MainChart extends Component {
   higlightPainter(){
 
     const { painterHighlight, transition, basecolor, color } = this.props
-
+    // console.log(painterHighlight)
     this.chartArea.selectAll('.main-chart-rects')
           .transition('painter-highlight')
           .duration(transition.short)
@@ -109,7 +109,7 @@ MainChart.defaultProps = {
       long: 1000,
       short: 300
     },
-    basecolor: '#aaaaaa',
+    basecolor: '#cccccc',
     margin :{
       top: 0,
       left: 0,
