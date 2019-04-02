@@ -712,5 +712,33 @@
     "end": 1851,
     "start": 1775,
     "shortName": "William Turner"
+  },
+  {
+    "age": "80-89 years",
+    "bio": "Mary Stevenson Cassatt (May 22, 1844 – June 14, 1926[1]) was an American painter and printmaker. She was born in Allegheny City, Pennsylvania, but lived much of her adult life in France, where she first befriended Edgar Degas and later exhibited among the Impressionists. Cassatt often created images of the social and private lives of women, with particular emphasis on the intimate bonds between mothers and children.",
+    "movement": "Impressionism",
+    "id": 37,
+    "name": "Mary Cassatt",
+    "nationality": "American",
+    "paintings": "303 <",
+    "wiki": "https://en.wikipedia.org/wiki/Mary_Cassatt",
+    "years": "1844 - 1926",
+    "end": 1926,
+    "start": 1844,
+    "shortName": "Mary Cassatt"
+  },
+  {
+    "age": "70-79 years",
+    "bio": "Rosa Bonheur, born Marie-Rosalie Bonheur, (March 16, 1822 – May 25, 1899) was a French artist, an animalière (painter of animals) and sculptor, known for her artistic realism. Bonheur was widely considered to be the most famous female painter during the nineteenth century.",
+    "movement": "Realism",
+    "id": 38,
+    "name": "Rosa Bonheur",
+    "nationality": "French",
+    "paintings": "50 <",
+    "wiki": "https://en.wikipedia.org/wiki/Rosa_Bonheur",
+    "years": "1844 - 1926",
+    "end": 1899,
+    "start": 1822,
+    "shortName": "Rosa Bonheur"
   }
 ]

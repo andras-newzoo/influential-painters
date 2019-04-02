@@ -55,7 +55,7 @@ class SecondaryChartContainer extends Component {
                 yKey = {"nationality"}
 
                 reset = {reset}
-                xMax = {12}
+                xMax = {14.2}
                 yDomain = {[ "Flemish",  "Russian", "Dutch", "Spanish",  "Italian", "French"]}
 
                 color = {color}

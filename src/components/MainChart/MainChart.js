@@ -22,7 +22,9 @@ class MainChart extends Component {
 
     if(this.props.reset){
       this.resetColors()
-    } else if (this.props.color !== prevProps.color || this.props.painterHighlight !== prevProps.painterHighlight){
+    } else if (this.props.color !== prevProps.color
+              || this.props.painterHighlight !== prevProps.painterHighlight
+              || this.props.metricKey !== 'none'){
 
         if (this.props.metric === 'none'){
           this.higlightPainter()
@@ -54,9 +56,9 @@ class MainChart extends Component {
     const rects = this.chartArea.selectAll('.main-chart-rects').data(data),
           texts = this.chartArea.selectAll('.main-chart-text').data(data)
 
-    appendAxisText(this.chartArea, this.xScale, 1800, 380, 500)
-    appendAxisText(this.chartArea, this.xScale, 1900, 15, 500)
-    appendAxisText(this.chartArea, this.xScale, 1700, 460, 500)
+    appendAxisText(this.chartArea, this.xScale, 1800, 380, 720)
+    appendAxisText(this.chartArea, this.xScale, 1900, 15, 720)
+    appendAxisText(this.chartArea, this.xScale, 1700, 460, 720)
     appendAxisText(this.chartArea, this.xScale, 1600, 460, 720)
     appendAxisText(this.chartArea, this.xScale, 1500, 550, 720)
     appendAxisText(this.chartArea, this.xScale, 1400, 650, 720)

@@ -2,6 +2,7 @@
   "name": "influential-painters",
   "version": "0.1.0",
   "private": true,
+    "homepage": "https://boringbarchart.com/influential-painters-of-our-history",
   "dependencies": {
     "d3-axis": "^1.0.12",
     "d3-collection": "^1.0.7",
